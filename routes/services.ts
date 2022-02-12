@@ -1,5 +1,12 @@
 import Router from '@koa/router'
-import { getAddress, getAllServices, getAllServicesLists, getAllTaxonomies, getService, getServicesList } from 'middlewares'
+import {
+  getAddress,
+  getAllServices,
+  getAllServicesLists,
+  getAllTaxonomies,
+  getService,
+  getServicesList,
+} from 'middlewares'
 
 export const services = new Router()
 
@@ -13,14 +20,14 @@ services.get('/services', async (ctx) => {
 services.get('/taxonomies', async (ctx) => {
   const filter = ctx.query.filter as string
   const taxonomies = await getAllTaxonomies(filter)
-  
+
   ctx.body = taxonomies
 })
 
 services.get('/services-lists', async (ctx) => {
   const filter = ctx.query.filter as string
   const servicesLists = await getAllServicesLists(filter)
-  
+
   ctx.body = servicesLists
 })
 
