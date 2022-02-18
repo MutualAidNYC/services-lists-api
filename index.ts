@@ -1,8 +1,10 @@
 import Koa from 'koa'
+import bodyParser from 'koa-bodyparser'
 import { appRouter } from 'routes'
 
 const app = new Koa()
 
+app.use(bodyParser())
 app.use(appRouter.routes()).use(appRouter.allowedMethods())
 
 const port = process.env.PORT || 3001

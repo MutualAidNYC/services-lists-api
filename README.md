@@ -7,6 +7,7 @@ A [Node.js](https://nodejs.org/en/) REST API for interacting with NYC health, hu
 - [TypeScript](https://www.typescriptlang.org)
 - [Koa](https://koajs.com)
 - [@koa/router](https://github.com/koajs/router)
+- [koa-bodyparser](https://github.com/koajs/bodyparser)
 - [Airtable.js](https://github.com/airtable/airtable.js)
 
 ## Requirements
@@ -22,13 +23,16 @@ A [Node.js](https://nodejs.org/en/) REST API for interacting with NYC health, hu
 - Copy the `sample.env` file: `cp sample.env .env`
 - Add your Airtable API key and the id of the Airtable base containing your data to the `.env` file. You can also change the `PORT` variable to use a different port - the default is `3001`.
 - Start a development server: `yarn dev`. The development script uses [nodemon](https://nodemon.io/) instead of node so that the server automatically restarts with changes.
-- Call the api with [curl](https://curl.se/): `curl localhost:{PORT}` + one of the following routes:
-  - `/services`
-  - `/taxonomies`
-  - `services-lists`
-  - `services/:id`
-  - `addresses/:id`
-  - `services-lists/:id`
+- The API provides the following routes:
+  - `GET /services`: returns a list of all services
+  - `GET /taxonomies`: returns a list of all taxonomies
+  - `GET /services-lists`: returns a list of all services lists
+  - `GET /services/:id`: returns the service with the given id
+  - `GET /addresses/:id`: returns the addresses with given id
+  - `GET /services-lists/:id`: returns the services list with the given id
+  - `POST /services-lists`: creates new services lists and returns the ids of the created lists
+
+One way to call these routes is with [curl](https://curl.se/).
 
 ## Linting
 

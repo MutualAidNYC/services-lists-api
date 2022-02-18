@@ -1,5 +1,6 @@
 import Router from '@koa/router'
 import {
+  createServicesLists,
   getAddress,
   getAllServices,
   getAllServicesLists,
@@ -7,6 +8,7 @@ import {
   getService,
   getServicesList,
 } from 'middlewares'
+import { CreateServicesListRequest } from 'models'
 
 export const services = new Router()
 
@@ -50,4 +52,11 @@ services.get('/services-lists/:id', async (ctx) => {
   const servicesList = await getServicesList(id)
 
   ctx.body = servicesList
+})
+
+services.post('/services-lists', async (ctx) => {
+  const reqBody = ctx.request.body as CreateServicesListRequest[]
+  const res = await createServicesLists(reqBody)
+
+  ctx.body = res.map((servicesList) => servicesList.id)
 })
